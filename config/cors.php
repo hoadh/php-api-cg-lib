@@ -21,7 +21,8 @@ return [
 
         'allow_origins' => [
             'http://localhost:4200',
-            'https://thuvienuocmo.com'
+            'https://cglib.netlify.com',
+            'https://cglib.now.sh'
         ],
 
         'allow_methods' => [
