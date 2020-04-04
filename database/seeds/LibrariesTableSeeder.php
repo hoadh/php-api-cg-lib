@@ -14,14 +14,11 @@ class LibrariesTableSeeder extends Seeder
     {
         $library = new Library();
         $library->id = 1;
-        $library->name = "Thu vien uoc mo My Dinh";
+        $library->name = "Thư viện CodeGym Moncity";
         $library->image = "storage/images/libraries/default.jpg";
-        $library->desc = "Thư viện ước mơ Mỹ Đình";
-        $library->address = "Ha Noi";
-        $library->phone = "098765343";
-        $library->manager = "Admin";
-        $library->manager_address = "Ha Noi";
-        $library->manager_phone = "098765342";
+        $library->desc = "Tủ sách CodeGym Moncity";
+        $library->address = "Hà Nội";
+        $library->phone = "02462538829";
         $library->save();
     }
 }

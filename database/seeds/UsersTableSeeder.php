@@ -25,9 +25,9 @@ class UsersTableSeeder extends Seeder
 
         $user = new User();
         $user->id = 2;
-        $user->name = "Huyen";
-        $user->username = "huyen";
-        $user->phone = "0856987372";
+        $user->name = "Quyen";
+        $user->username = "quyen";
+        $user->phone = "0909315962";
         $user->role = RoleConstants::LIBRARIAN;
         $user->password = Hash::make("12345678");
         $user->library_id = 1;
@@ -35,9 +35,9 @@ class UsersTableSeeder extends Seeder
 
         $user = new User();
         $user->id = 3;
-        $user->name = "Hanh";
-        $user->username = "hanh";
-        $user->phone = "0856977372";
+        $user->name = "Hang";
+        $user->username = "hang";
+        $user->phone = "0989526632";
         $user->role = RoleConstants::LIBRARIAN;
         $user->library_id = 1;
         $user->password = Hash::make("12345678");

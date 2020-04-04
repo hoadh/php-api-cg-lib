@@ -13,7 +13,7 @@ class CategoriesTableSeeder extends Seeder
     {
         $category = new \App\Category();
         $category->id = 1;
-        $category->name = "Lap trinh";
+        $category->name = "Sách khoa học công nghệ";
         $category->save();
     }
 }
