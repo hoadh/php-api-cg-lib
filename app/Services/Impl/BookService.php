@@ -29,9 +29,9 @@ class BookService extends BaseService implements BookServiceInterface
             $book->id = $item->id;
             $book->title = $item->title;
             $book->authors = $item->authors;
-            $book->isbn = $item->isbn;
             $book->status_id = $item->status_id;
             $book->category = $item->category;
+            $book->note = $item->note;
             array_push($arrBooks, $book);
         }
 
@@ -43,13 +43,9 @@ class BookService extends BaseService implements BookServiceInterface
         $book = new Book();
         $book->title = $request->title;
         $book->authors = $request->authors;
-        $book->isbn = $request->isbn;
         $book->status_id = $request->status_id;
-        $book->is_borrowing = BookBorrowStatusConstans::NOTBORROWING;
         $book->category_id = $request->category_id;
         $book->library_id = $request->library_id;
-        $book->ages = $request->ages;
-        $book->publishing_company = $request->publishing_company;
         $this->bookRepository->create($book);
 
     }
@@ -73,11 +69,9 @@ class BookService extends BaseService implements BookServiceInterface
     {
         $book->title = $request->title;
         $book->authors = $request->authors;
-        $book->isbn = $request->isbn;
         $book->status_id = $request->status_id;
         $book->category_id = $request->category_id;
-        $book->ages = $request->ages;
-        $book->publishing_company = $request->publishing_company;
+        $book->note = $request->note;
         $this->bookRepository->update($book);
     }
 
@@ -168,13 +162,10 @@ class BookService extends BaseService implements BookServiceInterface
         $book->id = $item->id;
         $book->title = $item->title;
         $book->authors = $item->authors;
-        $book->isbn = $item->isbn;
-        $book->is_borrowing = $item->is_borrowing;
         $book->status_id = $item->status_id;
         $book->category = $item->category;
         $book->library = $item->library;
-        $book->ages = $item->ages;
-        $book->publishing_company = $item->publishing_company;
+        $book->note = $item->note;
         return $book;
     }
 }
