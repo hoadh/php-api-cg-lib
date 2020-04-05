@@ -20,9 +20,12 @@ $ docker-compose up -d
 # Init environment file
 $ cp .env.example .env
 
-# Generate key và optimze command:
+# Generate key & optimze command:
 $ docker-compose exec app php artisan key:generate
 $ docker-compose exec app php artisan jwt:secret
 $ docker-compose exec app php artisan storage:link
 $ sudo chmod -R 777 storage
+
+# Optional
+docker-compose exec app php artisan migrate:fresh --seed
 ```
