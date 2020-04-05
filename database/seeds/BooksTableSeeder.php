@@ -15,7 +15,7 @@ class BooksTableSeeder extends Seeder
         $book->id = 1;
         $book->title = "Tri Thức Về Vạn Vật - Một Thế Giới Trực Quan Chưa Từng Thấy";
         $book->authors = "DK";
-        $book->isbn = "8935251408089";
+//        $book->isbn = "8935251408089";
         $book->status_id = 1;
         $book->category_id = 1;
         $book->library_id = 1;

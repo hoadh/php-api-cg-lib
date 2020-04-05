@@ -15,12 +15,8 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('group')->nullable();
-            $table->string('code')->nullable();
-            $table->string('address')->nullable();
-            $table->string('role');
-            $table->date('birthday');
+            $table->string('full_name');
+            $table->string('department')->nullable();
             $table->bigInteger('library_id')->unsigned();
             $table->foreign('library_id')->references('id')->on('libraries')->onDelete('cascade');
             $table->timestamps();

@@ -14,7 +14,7 @@ class AddColumnIsBorrowBooksTable extends Migration
     public function up()
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->string('is_borrowing')->nullable()->after('library_id');
+//            $table->string('is_borrowing')->nullable()->after('library_id');
         });
     }
 

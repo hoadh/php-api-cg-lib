@@ -15,7 +15,7 @@ class UpdateColumnCategoryIdBooksTable extends Migration
     public function up()
     {
         Schema::table('books', function (Blueprint $table) {
-            DB::statement("ALTER TABLE `{$table->getTable()}` CHANGE COLUMN `category_id` `category_id` BIGINT(20) UNSIGNED NULL;");
+//            DB::statement("ALTER TABLE `{$table->getTable()}` CHANGE COLUMN `category_id` `category_id` BIGINT(20) UNSIGNED NULL;");
         });
     }
 

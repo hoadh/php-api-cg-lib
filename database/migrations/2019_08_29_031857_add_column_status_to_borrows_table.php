@@ -15,7 +15,7 @@ class AddColumnStatusToBorrowsTable extends Migration
     public function up()
     {
         Schema::table('borrows', function (Blueprint $table) {
-            $table->string('status')->default(BorrowStatusConstants::BORROWING)->after('pay_day');
+//            $table->string('status')->default(BorrowStatusConstants::BORROWING)->after('date_returned');
         });
     }
 

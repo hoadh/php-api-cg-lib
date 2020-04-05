@@ -14,8 +14,8 @@ class AddColumnBooksTable extends Migration
     public function up()
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->string('ages')->nullable()->after('status_id');
-            $table->string('publishing_company')->nullable()->after('ages');
+//            $table->string('ages')->nullable()->after('status_id');
+//            $table->string('publishing_company')->nullable()->after('ages');
         });
     }
 

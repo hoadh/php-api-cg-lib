@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Http\Controllers\BorrowStatusConstants;
 
 class CreateBorrowsTable extends Migration
 {
@@ -15,15 +16,15 @@ class CreateBorrowsTable extends Migration
     {
         Schema::create('borrows', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('student_name');
-            $table->string('student_code')->nullable();
-            $table->string('school_name');
-            $table->string('class_name');
             $table->unsignedBigInteger('book_id');
-            $table->unsignedBigInteger('library_id');
             $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+            $table->unsignedBigInteger('library_id');
             $table->foreign('library_id')->references('id')->on('libraries')->onDelete('cascade');
-            $table->date('pay_day');
+            $table->bigInteger('customer_id')->unsigned();
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->date('date_borrowed');
+            $table->date('date_returned');
+            $table->integer('status')->default(BorrowStatusConstants::BORROWING);
             $table->timestamps();
         });
     }

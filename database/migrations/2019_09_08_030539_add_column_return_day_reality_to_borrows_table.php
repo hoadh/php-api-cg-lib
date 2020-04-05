@@ -14,7 +14,7 @@ class AddColumnReturnDayRealityToBorrowsTable extends Migration
     public function up()
     {
         Schema::table('borrows', function (Blueprint $table) {
-            $table->date('return_day_reality')->nullable()->after('pay_day');
+//            $table->date('date_returned_reality')->nullable()->after('date_returned');
         });
     }
 
