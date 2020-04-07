@@ -38,7 +38,7 @@ Route::group(['middleware' => 'jwt.verify'], function () {
         Route::put('{library_id}/books/{id}', 'Api\BookController@update');
         Route::get('/{library_id}/books/borrow-status/{statusBorrow}', 'Api\BookController@getBookByStatusBorrow');
 
-        Route::post('/{library_id}/borrows/create', 'Api\BorrowController@store');
+        Route::post('/{library_id}/borrows', 'Api\BorrowController@store');
         Route::get('/{library_id}/borrows', 'Api\BorrowController@index');
         Route::get('/{library_id}/borrows/{id}', 'Api\BorrowController@show');
         Route::put('/{library_id}/borrows/{id}', 'Api\BorrowController@update');
