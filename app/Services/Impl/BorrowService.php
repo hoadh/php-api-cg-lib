@@ -33,6 +33,7 @@ class BorrowService extends BaseService implements BorrowServiceInterface
             $borrow->full_name = $request->full_name;
             $borrow->department = $request->department;
             $borrow->book_id = $item['id'];
+            $borrow->date_borrowed = date('Y-m-d');
             $borrow->date_expected_returned = $request->date_expected_returned;
             $borrow->status_id = BorrowStatusConstants::BORROWING;
             $this->borrowRepository->create($borrow);
