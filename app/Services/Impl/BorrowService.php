@@ -29,7 +29,9 @@ class BorrowService extends BaseService implements BorrowServiceInterface
         foreach ($request->books as $item) {
             $borrow = new Borrow();
             $borrow->library_id = $lib_id;
-            $borrow->customer_id = $request->customer_id;
+//            $borrow->customer_id = $request->customer_id;
+            $borrow->full_name = $request->full_name;
+            $borrow->department = $request->department;
             $borrow->book_id = $item['id'];
             $borrow->date_expected_returned = $request->date_expected_returned;
             $borrow->status_id = BorrowStatusConstants::BORROWING;
@@ -89,7 +91,9 @@ class BorrowService extends BaseService implements BorrowServiceInterface
         if ($data) {
             $borrow = new \stdClass();
             $borrow->id = $data->id;
-            $borrow->customer = $data->customer;
+//            $borrow->customer = $data->customer;
+            $borrow->full_name = $data->full_name;
+            $borrow->department = $data->department;
             $borrow->book = $data->book;
             $borrow->date_expected_returned = $data->date_expected_returned;
             $borrow->date_borrowed = $data->created_at->format('Y-m-d');
@@ -101,7 +105,7 @@ class BorrowService extends BaseService implements BorrowServiceInterface
     public function update($borrow, $request)
     {
         $borrow->date_actual_returned = date('Y-m-d');
-        $borrow->status = BorrowStatusConstants::RETURNED;
+        $borrow->status_id = BorrowStatusConstants::RETURNED;
         $this->borrowRepository->update($borrow);
 
         $book = $borrow->book;
