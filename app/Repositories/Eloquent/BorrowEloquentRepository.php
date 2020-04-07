@@ -23,7 +23,7 @@ class BorrowEloquentRepository extends EloquentRepository implements  BorrowRepo
 
     public function getBorrowsByLibraryId($id)
     {
-        return Borrow::where('library_id', $id)->where('status', BorrowStatusConstants::BORROWING)->get();
+        return Borrow::where('library_id', $id)->where('status_id', BorrowStatusConstants::BORROWING)->get();
     }
 
     public function findByLibraryId($lib_id, $borrow_id)
