@@ -26,22 +26,18 @@ class BorrowService extends BaseService implements BorrowServiceInterface
 
     public function create($request, $lib_id)
     {
-        foreach ($request->book as $item) {
+        foreach ($request->books as $item) {
             $borrow = new Borrow();
-
+            $borrow->library_id = $lib_id;
             $borrow->customer_id = $request->customer_id;
             $borrow->book_id = $item['id'];
+            $borrow->date_expected_returned = $request->date_expected_returned;
+            $borrow->status_id = BorrowStatusConstants::BORROWING;
+            $this->borrowRepository->create($borrow);
 
             $book = $this->bookRepository->findByLibraryId($lib_id, $item['id']);
-
-            $book->status_id = $item['status'];
-            $book->is_borrowing = BookBorrowStatusConstans::BORROWING;
+            $book->status_id = BookBorrowStatusConstans::BORROWED;
             $this->bookRepository->update($book);
-
-            $borrow->library_id = $lib_id;
-            $borrow->pay_day = $request->pay_day;
-            $borrow->status = BorrowStatusConstants::BORROWING;
-            $this->borrowRepository->create($borrow);
         }
     }
 
@@ -50,7 +46,7 @@ class BorrowService extends BaseService implements BorrowServiceInterface
         $borrows = $this->borrowRepository->getBorrowsByLibraryId($lib_id);
         $arr = [];
         foreach ($borrows as $item) {
-            $borrow = $this->setNewBorrow($item);
+            $borrow = $this->getBorrowResponse($item);
             array_push($arr, $borrow);
         }
 
@@ -88,29 +84,28 @@ class BorrowService extends BaseService implements BorrowServiceInterface
      * @param $data
      * @return \stdClass
      */
-    public function setNewBorrow($data)
+    public function getBorrowResponse($data)
     {
         if ($data) {
             $borrow = new \stdClass();
             $borrow->id = $data->id;
             $borrow->customer = $data->customer;
             $borrow->book = $data->book;
-            $borrow->pay_day = $data->pay_day;
-            $borrow->status = $data->status;
-            $borrow->borrow_day = $data->created_at->format('Y-m-d');
-            $borrow->return_day_reality = $data->return_day_reality;
+            $borrow->date_expected_returned = $data->date_expected_returned;
+            $borrow->date_borrowed = $data->created_at->format('Y-m-d');
+            $borrow->date_actual_returned = $data->date_actual_returned;
             return $borrow;
         }
     }
 
     public function update($borrow, $request)
     {
-        $borrow->return_day_reality = date('Y-m-d');
-        $borrow->status = BorrowStatusConstants::BORROWED;
+        $borrow->date_actual_returned = date('Y-m-d');
+        $borrow->status = BorrowStatusConstants::RETURNED;
         $this->borrowRepository->update($borrow);
+
         $book = $borrow->book;
-        $book->status_id = $request->status_book;
-        $book->is_borrowing = BookBorrowStatusConstans::NOTBORROWING;
+        $book->status_id = BookBorrowStatusConstans::AVAILABLE;
         $this->bookRepository->update($book);
     }
 }

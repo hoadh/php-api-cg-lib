@@ -73,7 +73,7 @@ class BooksImport implements ToModel, WithBatchInserts, WithHeadingRow
         // New book (Insert)
         else {
             $book->status_id = BookStatusConstants::NEW;
-            $book->is_borrowing = BookBorrowStatusConstans::NOTBORROWING;
+            $book->is_borrowing = BookBorrowStatusConstans::AVAILABLE;
             return $book;
         }
     }

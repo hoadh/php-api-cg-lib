@@ -46,6 +46,7 @@ class CustomerController extends Controller
 
     public function store(Request $request, $library_id)
     {
+        $customer = null;
         try {
             $library = $this->libraryService->find($library_id);
             if (!$library) {
@@ -55,7 +56,7 @@ class CustomerController extends Controller
                 ], 404);
             }
 
-            $this->customerService->create($request, $library_id);
+            $customer = $this->customerService->create($request, $library_id);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
@@ -65,7 +66,8 @@ class CustomerController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => __('language.create_customer_success')
+            'message' => __('language.create_customer_success'),
+            'data' => $customer
         ], 200);
     }
 

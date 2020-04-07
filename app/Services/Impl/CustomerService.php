@@ -27,25 +27,10 @@ class CustomerService extends BaseService implements CustomerServiceInterface
     public function create($request, $library_id)
     {
         $customer = new Customer();
-        $customer->name = $request->name;
-        $customer->group = $request->group;
-        $customer->code = $request->code;
-        $customer->address = $request->address;
-        $role = $request->role;
-        switch ($role) {
-            case CustomerRoleConstants::ROLE_STUDENT:
-                $customer->role = CustomerRoleConstants::ROLE_STUDENT;
-                break;
-            case CustomerRoleConstants::ROLE_TEACHER:
-                $customer->role = CustomerRoleConstants::ROLE_TEACHER;
-                break;
-            default:
-                $customer->role = CustomerRoleConstants::ROLE_OTHER;
-                break;
-        }
+        $customer->full_name = $request->full_name;
+        $customer->department = $request->department;
         $customer->library_id = $library_id;
-        $customer->birthday = $request->birthday;
-        $this->customerRepository->create($customer);
+        return $this->customerRepository->create($customer);
     }
 
     public function find($library_id, $customer_id)
@@ -55,23 +40,8 @@ class CustomerService extends BaseService implements CustomerServiceInterface
 
     public function update($request, $customer)
     {
-        $customer->name = $request->name;
-        $customer->group = $request->group;
-        $customer->code = $request->code;
-        $customer->address = $request->address;
-        $role = $request->role;
-        switch ($role) {
-            case CustomerRoleConstants::ROLE_STUDENT:
-                $customer->role = CustomerRoleConstants::ROLE_STUDENT;
-                break;
-            case CustomerRoleConstants::ROLE_TEACHER:
-                $customer->role = CustomerRoleConstants::ROLE_TEACHER;
-                break;
-            default:
-                $customer->role = CustomerRoleConstants::ROLE_OTHER;
-                break;
-        }
-        $customer->birthday = $request->birthday;
+        $customer->full_name = $request->full_name;
+        $customer->department = $request->department;
         $this->customerRepository->update($customer);
     }
 
