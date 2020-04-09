@@ -38,14 +38,11 @@ class BooksImport implements ToModel, WithBatchInserts, WithHeadingRow
             return null;
         }
         $authors = ($row['tac_gia']) ? $row['tac_gia'] : "";
-        $barcode = ($row['barcode']) ? $row['barcode'] : "";
 
         $book = new Book();
         $book->title = $row['tieu_de'];
         $book->authors = $authors;
-        $book->isbn = $barcode;
-        $book->ages = $row['nhom_tuoi'];
-        $book->publishing_company = $row['nha_xuat_ban'];
+        $book->note = $row['ghi_chu'];
         $book->library_id = $this->libraryId;
 
         // Set category
@@ -56,26 +53,8 @@ class BooksImport implements ToModel, WithBatchInserts, WithHeadingRow
             $book->category_id = null; // No Category
         }
 
-        // Update with existed barcode
-        $existedBook = null;
-        if ($barcode != "") {
-            $existedBook = $this->bookService->findByBarcode(1, $barcode);
-        }
-
-        // Existed Book (Update)
-        if ($existedBook) {
-            $book->status_id = $existedBook->status_id;
-            $book->is_borrowing = $existedBook->is_borrowing;
-            $this->bookService->update($book, $existedBook);
-            return null; // do not insert new book
-        }
-
-        // New book (Insert)
-        else {
-            $book->status_id = BookStatusConstants::NEW;
-            $book->is_borrowing = BookBorrowStatusConstans::AVAILABLE;
-            return $book;
-        }
+        $book->status_id = BookStatusConstants::NEW;
+        return $book;
     }
 
     /**

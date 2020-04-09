@@ -19,10 +19,8 @@ class SampleBookWithHeaderExport implements FromArray, WithHeadings, WithTitle
         return [
             'tieu_de',
             'tac_gia',
-            'barcode',
             'danh_muc',
-            'nhom_tuoi',
-            'nha_xuat_ban'
+            'ghi_chu'
         ];
     }
 
@@ -32,12 +30,11 @@ class SampleBookWithHeaderExport implements FromArray, WithHeadings, WithTitle
     public function array(): array
     {
         return [
-            ['Lập trình JavaScript',
-                'CodeGym',
-                '123456',
-                'Lập trình',
-                '13-30',
-                'Nội bộ']
+            ['Chiến lược đại dương xanh',
+                'W. Chan Kim & Renee Mauborgne',
+                'Quản trị, doanh nghiệp',
+                'Sách nhập thử'
+            ]
         ];
     }
 
