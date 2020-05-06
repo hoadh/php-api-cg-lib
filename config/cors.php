@@ -22,6 +22,7 @@ return [
         'allow_origins' => [
             'http://localhost:4200',
             'https://cglib.netlify.com',
+            'https://cglib.netlify.app',
             'https://cglib.now.sh'
         ],
 
