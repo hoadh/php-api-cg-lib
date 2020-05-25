@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
 
         $user = new User();
         $user->id = 2;
-        $user->name = "Quyen";
+        $user->name = "Bui Thi Quyen";
         $user->username = "quyen";
         $user->role = RoleConstants::LIBRARIAN;
         $user->password = Hash::make("12345678");
@@ -33,8 +33,17 @@ class UsersTableSeeder extends Seeder
 
         $user = new User();
         $user->id = 3;
-        $user->name = "Hang";
+        $user->name = "Le Thi Hang";
         $user->username = "hang";
+        $user->role = RoleConstants::LIBRARIAN;
+        $user->library_id = 1;
+        $user->password = Hash::make("12345678");
+        $user->save();
+
+        $user = new User();
+        $user->id = 4;
+        $user->name = "Trang Le";
+        $user->username = "trangle";
         $user->role = RoleConstants::LIBRARIAN;
         $user->library_id = 1;
         $user->password = Hash::make("12345678");
