@@ -42,7 +42,7 @@ class BooksImport implements ToModel, WithBatchInserts, WithHeadingRow
         $book = new Book();
         $book->title = $row['tieu_de'];
         $book->authors = $authors;
-        $book->note = $row['ghi_chu'];
+        $book->note = ($row['ghi_chu']) ? $row['ghi_chu'] : "";
         $book->library_id = $this->libraryId;
 
         // Set category
