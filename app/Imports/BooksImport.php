@@ -50,7 +50,7 @@ class BooksImport implements ToModel, WithBatchInserts, WithHeadingRow
         if (isset($categoryId)) {
             $book->category_id = $categoryId;
         } else {
-            $book->category_id = null; // No Category
+            return null;
         }
 
         $book->status_id = BookStatusConstants::NEW;
