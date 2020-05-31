@@ -31,7 +31,7 @@ Route::group(['middleware' => 'jwt.verify'], function () {
         Route::delete('/{id}/delete', 'Api\LibraryController@destroy');
         Route::post('/{id}/update', 'Api\LibraryController@update');
         Route::get('/{id}', 'Api\LibraryController@show');
-//        Route::get('/{id}/books', 'Api\BookController@getBooksByLibraryId');
+        Route::get('/{id}/all-books', 'Api\BookController@getBooksByLibraryId');
         Route::get('/{id}/books', 'Api\BookController@filterBooks');
         Route::delete('{library_id}/books/{id}', 'Api\BookController@destroy');
         Route::get('{library_id}/books/{id}', 'Api\BookController@show');
